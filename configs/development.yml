@@ -1,36 +1,41 @@
 rpc:
-  mainnet:
-    uri: https://rpc.tzkt.io/mainnet
-    timeout: 20
-  edo2net:
-    uri: https://rpc.tzkt.io/edo2net
-    timeout: 20
-  delphinet:
-    uri: https://rpc.tzkt.io/delphinet
-    timeout: 20
+  # mainnet:
+  #   uri: https://rpc.tzkt.io/mainnet
+  #   timeout: 20
+  # edo2net:
+  #   uri: https://rpc.tzkt.io/edo2net
+  #   timeout: 20
+  # delphinet:
+  #   uri: https://rpc.tzkt.io/delphinet
+  #   timeout: 20
   florencenet:
     uri: https://rpc.tzkt.io/florencenobanet
     timeout: 20
 
 tzkt:
-  mainnet:
-    uri: https://api.tzkt.io/v1/
-    services_uri: https://services.tzkt.io/v1/
-    base_uri: https://tzkt.io/
-    timeout: 20
-  edo2net:
-    uri: https://api.edo2net.tzkt.io/v1/
-    services_uri: https://services.tzkt.io/edo2net/v1/
-    base_uri: https://edo2net.tzkt.io/
-    timeout: 20
-  delphinet:
-    uri: https://api.delphinet.tzkt.io/v1/
-    services_uri: https://services.tzkt.io/delphinet/v1/
-    base_uri: https://delphinet.tzkt.io/
+  # mainnet:
+  #   uri: https://api.tzkt.io/v1/
+  #   services_uri: https://services.tzkt.io/v1/
+  #   base_uri: https://tzkt.io/
+  #   timeout: 20
+  # edo2net:
+  #   uri: https://api.edo2net.tzkt.io/v1/
+  #   services_uri: https://services.tzkt.io/edo2net/v1/
+  #   base_uri: https://edo2net.tzkt.io/
+  #   timeout: 20
+  # delphinet:
+  #   uri: https://api.delphinet.tzkt.io/v1/
+  #   services_uri: https://services.tzkt.io/delphinet/v1/
+  #   base_uri: https://delphinet.tzkt.io/
+  #   timeout: 20
+  florencenet:
+    uri: https://api.florencenet.tzkt.io/v1/
+    services_uri: https://services.tzkt.io/florencenet/v1/
+    base_uri: https://florencenet.tzkt.io/
     timeout: 20
 
 storage:
-  pg: "host=${DB_HOSTNAME:-127.0.0.1} port=5432 user=${POSTGRES_USER} dbname=indexer password=${POSTGRES_PASSWORD} sslmode=disable"
+  pg: "host=${DB_HOSTNAME:-127.0.0.1} port=5432 user=${POSTGRES_USER} dbname=${POSTGRES_DB} password=${POSTGRES_PASSWORD} sslmode=disable"
   elastic:
     - http://${ELASTIC_HOSTNAME:-127.0.0.1}:9200
   timeout: 10
@@ -89,8 +94,8 @@ api:
     mempool_enabled: true
     sandbox_mode: false
   networks:
-    - mainnet
-    - edo2net
+    # - mainnet
+    # - edo2net
     - florencenet
   pinata:
     key: ${PINATA_KEY}
@@ -117,13 +122,14 @@ indexer:
   mq:
     publisher: true
   networks:
-    mainnet:
-      boost: tzkt
+    # mainnet:
+    #   boost: tzkt
     # delphinet:
     #   boost: tzkt
-    edo2net:
-      boost: tzkt
+    # edo2net:
+    #   boost: tzkt
     florencenet:
+      boost: tzkt
 
 metrics:
   project_name: metrics
@@ -153,4 +159,4 @@ scripts:
     publisher: true
 
 graphql:
-  db: "host=127.0.0.1 port=5432 user=graphql dbname=indexer password=${POSTGRES_GRAPHQL} sslmode=disable"
+  db: "host=127.0.0.1 port=5432 user=graphql dbname=${POSTGRES_DB} password=${POSTGRES_GRAPHQL} sslmode=disable"

@@ -32,6 +32,6 @@ WORKDIR /app/metrics
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /go/bin/metrics /go/bin/metrics
 COPY cmd/metrics/mappings /app/metrics/mappings
-COPY configs/*.yml /app/metrics/
+COPY configs/*.yml /configs/
 
 ENTRYPOINT ["/go/bin/metrics"]
